@@ -7,8 +7,8 @@ router.post('/search', async (req, res) => {
   const { query, page, perPage } = req.body;
 
   try {
-    const photos = await unsplash.search.getPhotos({ query, page, perPage });
-    res.json(photos);
+    const users = await unsplash.search.getUsers({ query, page, perPage });
+    res.json(users);
   } catch (err) {
     res.json(err);
   }

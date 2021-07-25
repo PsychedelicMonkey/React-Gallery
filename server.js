@@ -16,6 +16,7 @@ mongoose.connect(config.get('db'), {
 
 // Routes
 app.use('/api/photos', require('./routes/api/photos'));
+app.use('/api/users', require('./routes/api/users'));
 
 const PORT = process.env.PORT || 5000;
 

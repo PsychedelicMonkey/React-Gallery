@@ -6,7 +6,9 @@
   "dependencies": {
     "config": "^3.3.6",
     "express": "^4.17.1",
-    "mongoose": "^5.13.3"
+    "mongoose": "^5.13.3",
+    "node-fetch": "^2.6.1",
+    "unsplash-js": "^7.0.15"
   },
   "devDependencies": {
     "concurrently": "^6.2.0",
