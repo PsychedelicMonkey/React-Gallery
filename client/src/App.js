@@ -4,13 +4,14 @@ import './App.css';
 import { Container } from 'reactstrap';
 
 import AppNavbar from './components/AppNavbar';
+import Gallery from './components/Gallery';
 
 function App() {
   return (
     <div className="App">
       <AppNavbar />
       <Container>
-        <h1>Home</h1>
+        <Gallery />
       </Container>
     </div>
   );

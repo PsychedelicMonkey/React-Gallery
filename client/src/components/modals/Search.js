@@ -52,7 +52,7 @@ class Search extends Component {
         <NavItem>
           <NavLink onClick={this.toggle} href="#">Search</NavLink>
         </NavItem>
-        <Modal isOpen={this.state.isOpen} toggle={this.toggle}>
+        <Modal isOpen={this.state.isOpen} toggle={this.toggle} autoFocus={false}>
           <ModalHeader toggle={this.toggle}>Search</ModalHeader>
           <Form onSubmit={this.onSubmit}>
             <ModalBody>
@@ -64,6 +64,7 @@ class Search extends Component {
                 placeholder="Search query"
                 value={this.state.query}
                 onChange={this.onChange}
+                autoFocus={true}
               />
             </ModalBody>
             <ModalFooter>

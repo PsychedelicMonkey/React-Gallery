@@ -4,5 +4,21 @@ body {
 }
 
 .container:nth-child(2) {
+  padding: 0 !important;
   background-color: #fff;
+}
+
+.gallery {
+  padding-top: 22px;
+  margin: 22px 20px;
+}
+
+.gallery div {
+  margin-bottom: 22px;
+}
+
+.gallery img {
+  width: auto;
+  max-width: 100%;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.1), 2px 3px 5px rgba(0, 0, 0, 0.1);
 }

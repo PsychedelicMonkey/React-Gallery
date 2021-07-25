@@ -4,6 +4,15 @@ const unsplash = require('../../unsplash');
 
 const Photo = require('../../models/Photo');
 
+router.get('/', async (req, res) => {
+  try {
+    const photos = await Photo.find().sort('-created_at');
+    res.json(photos);
+  } catch (err) {
+    res.json(err);
+  }
+});
+
 router.post('/add', async (req, res) => {
   const { photoId } = req.body;
 
