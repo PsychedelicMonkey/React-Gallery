@@ -24,6 +24,17 @@ router.post('/search/username', async (req, res) => {
   }
 });
 
+router.post('/search/username/photos', async (req, res) => {
+  const { username, page, perPage } = req.body;
+  
+  try {
+    const photos = await unsplash.users.getPhotos({ username, page, perPage });
+    res.json(photos);
+  } catch (err) {
+    res.json(err);
+  }
+});
+
 router.post('/search', async (req, res) => {
   const { query, page, perPage } = req.body;
 
