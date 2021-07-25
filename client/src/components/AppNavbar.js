@@ -9,6 +9,7 @@ import {
   NavItem,
   NavLink,
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 import Search from './modals/Search';
 
@@ -31,7 +32,7 @@ class AppNavbar extends Component {
     return (
       <Navbar color="light" light expand="md" fixed="top">
         <Container>
-          <NavbarBrand href="/">Gallery</NavbarBrand>
+          <NavbarBrand tag={Link} to="/">Gallery</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="mr-auto" navbar>

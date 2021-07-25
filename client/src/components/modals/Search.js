@@ -12,6 +12,8 @@ import {
   NavItem,
   NavLink,
 } from 'reactstrap';
+import { connect } from 'react-redux';
+import { searchPhotos } from '../../actions/searchActions';
 
 class Search extends Component {
   constructor(props) {
@@ -43,7 +45,9 @@ class Search extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    alert(JSON.stringify({ query: this.state.query }));
+    this.props.searchPhotos(JSON.stringify({ query: this.state.query, page: 1, perPage: 30 }));
+
+    this.toggle();
   }
 
   render() {
@@ -80,4 +84,4 @@ class Search extends Component {
   }
 }
 
-export default Search;
+export default connect(null, { searchPhotos })(Search);
