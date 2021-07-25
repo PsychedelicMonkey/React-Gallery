@@ -10,6 +10,8 @@ import {
   NavLink,
 } from 'reactstrap';
 
+import Search from './modals/Search';
+
 class AppNavbar extends Component {
   constructor(props) {
     super(props);
@@ -33,9 +35,7 @@ class AppNavbar extends Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="mr-auto" navbar>
-              <NavItem>
-                <NavLink href="#">Search</NavLink>
-              </NavItem>
+              <Search />
               <NavItem>
                 <NavLink href="https://github.com/PsychedelicMonkey/React-Gallery">GitHub</NavLink>
               </NavItem>
