@@ -3,6 +3,7 @@ const router = express.Router();
 const unsplash = require('../../unsplash');
 
 const Photo = require('../../models/Photo');
+const User = require('../../models/User');
 
 router.get('/', async (req, res) => {
   try {
@@ -19,8 +20,24 @@ router.post('/add', async (req, res) => {
   try {
     const photo = await unsplash.photos.get({ photoId });
     const modifiedPhoto = Object.assign({ unsplashId: photo.response.id }, photo.response);
+    modifiedPhoto.user = modifiedPhoto.user.id;
+
     const newPhoto = new Photo(modifiedPhoto);
     const savedPhoto = await newPhoto.save();
+
+    const findUser = await User.findOne({ unsplashId: savedPhoto.user }).exec();
+    if (!findUser) {
+      const user = await unsplash.users.get({ username: photo.response.user.username });
+      const modifiedUser = Object.assign({ unsplashId: user.response.id }, user.response);
+      const newUser = new User(modifiedUser);
+      newUser.photos = [];
+      newUser.photos.push(savedPhoto.unsplashId);
+      await newUser.save();
+    } else {
+      findUser.photos.push(savedPhoto.unsplashId);
+      await findUser.save();
+    }
+
     res.json(savedPhoto);
   } catch (err) {
     res.json(err);

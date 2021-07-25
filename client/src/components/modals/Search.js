@@ -56,16 +56,18 @@ class Search extends Component {
           <ModalHeader toggle={this.toggle}>Search</ModalHeader>
           <Form onSubmit={this.onSubmit}>
             <ModalBody>
-              <Label>Search</Label>
-              <Input
-                type="text"
-                id="query"
-                name="query"
-                placeholder="Search query"
-                value={this.state.query}
-                onChange={this.onChange}
-                autoFocus={true}
-              />
+              <FormGroup>
+                <Label>Search</Label>
+                <Input
+                  type="text"
+                  id="query"
+                  name="query"
+                  placeholder="Search query"
+                  value={this.state.query}
+                  onChange={this.onChange}
+                  autoFocus={true}
+                />
+              </FormGroup>
             </ModalBody>
             <ModalFooter>
               <Button type="submit" color="primary">Search Photos</Button>
