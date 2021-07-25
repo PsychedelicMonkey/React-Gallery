@@ -1,0 +1,8 @@
+body {
+  background-color: #eee;
+  padding-top: 70px;
+}
+
+.container:nth-child(2) {
+  background-color: #fff;
+}
