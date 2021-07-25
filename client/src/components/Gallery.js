@@ -1,22 +1,14 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import { loadGallery } from '../actions/galleryActions';
 
 class Gallery extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      photos: [],
-    };
-  }
-
   componentDidMount() {
-    fetch('/api/photos')
-    .then(res => res.json())
-    .then(data => this.setState({ photos: data }));
+    this.props.loadGallery();
   }
 
   render() {
-    const { photos } = this.state;
+    const { photos } = this.props;
     return (
       <div className="gallery row">
         { photos.map(photo => (
@@ -25,8 +17,12 @@ class Gallery extends Component {
           </div>
         )) }
       </div>
-    )
+    );
   }
 }
 
-export default Gallery;
+const mapStateToProps = state => ({
+  photos: state.gallery.photos,
+});
+
+export default connect(mapStateToProps, { loadGallery })(Gallery);
