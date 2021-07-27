@@ -38,6 +38,9 @@ class AppNavbar extends Component {
             <Nav className="mr-auto" navbar>
               <Search />
               <NavItem>
+                <NavLink tag={Link} to="/users">Users</NavLink>
+              </NavItem>
+              <NavItem>
                 <NavLink href="https://github.com/PsychedelicMonkey/React-Gallery">GitHub</NavLink>
               </NavItem>
             </Nav>
