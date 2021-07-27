@@ -14,6 +14,7 @@ import {
   Spinner,
 } from 'reactstrap';
 import { connect } from 'react-redux';
+import { addToGallery } from '../../actions/galleryActions';
 import { searchPhotos } from '../../actions/searchActions';
 
 class Search extends Component {
@@ -28,6 +29,7 @@ class Search extends Component {
 
     this.toggle = this.toggle.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   toggle = () => {
@@ -47,6 +49,10 @@ class Search extends Component {
     e.preventDefault();
 
     this.props.searchPhotos(JSON.stringify({ query: this.state.query, page: 1, perPage: 30 }));
+  }
+
+  addToGallery = id => {
+    this.props.addToGallery(id);
   }
 
   render() {
@@ -84,8 +90,9 @@ class Search extends Component {
           { photos ?
             <div className="gallery row">
               { photos.map(photo => (
-                <div className="col-md-4">
+                <div className="col-md-4" key={photo.id}>
                   <img src={photo.urls.regular} alt="" />
+                  <Button onClick={this.addToGallery.bind(this, photo.id)} className="mt-2">Add to Gallery</Button>
                 </div>
               )) }
             </div> : null }
@@ -99,4 +106,4 @@ const mapStateToProps = state => ({
   search : state.search,
 });
 
-export default connect(mapStateToProps, { searchPhotos })(Search);
+export default connect(mapStateToProps, { searchPhotos, addToGallery })(Search);

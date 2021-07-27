@@ -1,4 +1,6 @@
 // Gallery
+export const ADD_TO_GALLERY = 'ADD_TO_GALLERY';
+export const ADD_TO_GALLERY_ERROR = 'ADD_TO_GALLERY_ERROR';
 export const LOAD_GALLERY = 'LOAD_GALLERY';
 export const LOAD_GALLERY_ERROR = 'LOAD_GALLERY_ERROR';
 
