@@ -8,20 +8,9 @@ class Gallery extends Component {
   }
 
   render() {
-    const { photos, searchResults } = this.props;
+    const { photos } = this.props;
     return (
       <Fragment>
-        { searchResults ? 
-          <Fragment>
-            <div className="gallery row">
-            { searchResults.map(res => (
-              <div className="col-md-4">
-                <img src={res.urls.regular} alt="" />
-              </div>
-            )) }
-          </div>
-          <hr />
-        </Fragment> : null }
         <div className="gallery row">
           { photos.map(photo => (
             <div className="col-md-4">
@@ -36,7 +25,6 @@ class Gallery extends Component {
 
 const mapStateToProps = state => ({
   photos: state.gallery.photos,
-  searchResults: state.search.photos,
 });
 
 export default connect(mapStateToProps, { loadGallery })(Gallery);
