@@ -12,6 +12,8 @@ import {
   NavItem,
   NavLink,
 } from 'reactstrap';
+import { connect } from 'react-redux';
+import { loginUser } from '../../../actions/authActions';
 
 class Login extends Component {
   constructor(props) {
@@ -38,7 +40,8 @@ class Login extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    alert(JSON.stringify(this.state));
+    const { email, password } = this.state;
+    this.props.loginUser(JSON.stringify({ email, password }));
   }
 
   toggle = () => {
@@ -53,7 +56,7 @@ class Login extends Component {
         <NavItem>
           <NavLink onClick={this.toggle} href="#">Log In</NavLink>
         </NavItem>
-        <Modal isOpen={this.state.isOpen} toggle={this.toggle}>
+        <Modal isOpen={this.state.isOpen} toggle={this.toggle} autoFocus={false}>
           <ModalHeader toggle={this.toggle}>Log In</ModalHeader>
           <Form onSubmit={this.onSubmit}>
             <ModalBody>
@@ -66,6 +69,7 @@ class Login extends Component {
                   placeholder="Email Address"
                   value={this.state.email}
                   onChange={this.onChange}
+                  autoFocus={true}
                 />
               </FormGroup>
               <FormGroup>
@@ -91,4 +95,8 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { loginUser })(Login);

@@ -10,8 +10,10 @@ import {
   NavLink,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Login from './modals/auth/Login';
+import Logout from './modals/auth/Logout';
 import Search from './modals/Search';
 
 class AppNavbar extends Component {
@@ -30,6 +32,7 @@ class AppNavbar extends Component {
   }
 
   render() {
+    const { isAuthenticated } = this.props;
     return (
       <Navbar color="light" light expand="md" fixed="top">
         <Container>
@@ -46,7 +49,7 @@ class AppNavbar extends Component {
               </NavItem>
             </Nav>
             <Nav className="ml-auto" navbar>
-              <Login />
+              { isAuthenticated ? <Logout /> : <Login /> }
             </Nav>
           </Collapse>
         </Container>
@@ -55,4 +58,8 @@ class AppNavbar extends Component {
   }
 }
 
-export default AppNavbar;
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+})
+
+export default connect(mapStateToProps)(AppNavbar);

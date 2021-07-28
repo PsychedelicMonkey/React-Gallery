@@ -1,3 +1,12 @@
+// Authentication
+export const AUTH_ERROR = 'AUTH_ERROR';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const LOGOUT_ERROR = 'LOGOUT_ERROR';
+export const LOADED_USER = 'LOADED_USER';
+export const LOADING_USER = 'LOADING_USER';
+
 // Gallery
 export const ADD_TO_GALLERY = 'ADD_TO_GALLERY';
 export const ADD_TO_GALLERY_ERROR = 'ADD_TO_GALLERY_ERROR';
