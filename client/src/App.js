@@ -9,6 +9,7 @@ import store from './store';
 import AppNavbar from './components/AppNavbar';
 import Gallery from './components/Gallery';
 import Users from './components/Users';
+import UserPhotos from './components/UserPhotos';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Container>
             <Route exact path="/" component={Gallery} />
             <Route exact path="/users" component={Users} />
+            <Route exact path="/users/:id" component={UserPhotos} />
           </Container>
         </div>
       </Router>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Table } from 'reactstrap';
+import { Button, Table } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 class Users extends Component {
   constructor(props) {
@@ -36,6 +37,7 @@ class Users extends Component {
                 <td><a href={user.links.html}>{user.username}</a></td>
                 <td>{user.name}</td>
                 <td>{user.photos.length}</td>
+                <td><Link to={`/users/${user.unsplashId}`} className="btn btn-primary btn-block">View saved photos</Link></td>
               </tr>
             )) }
           </tbody>

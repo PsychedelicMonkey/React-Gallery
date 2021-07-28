@@ -20,7 +20,7 @@ router.get('/:id', async (req, res) => {
   const { id } = req.params;
   try {
     const user = await User.findOne({ unsplashId: id });
-    const photos = await Photo.find({ unsplashId: { $in: user.photos } });
+    const photos = await Photo.find({ unsplashId: { $in: user.photos } }).sort('-created_at');
     user.photos = photos;
     res.json(user);
   } catch (err) {
