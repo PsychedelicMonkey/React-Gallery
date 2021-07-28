@@ -21,13 +21,14 @@ class Users extends Component {
     const { users } = this.state;
     return (
       <div>
-        <Table>
+        <Table striped responsive>
           <thead>
             <tr>
               <th></th>
               <th>Username</th>
               <th>Name</th>
               <th>Photo Count</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>

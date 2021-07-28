@@ -1,11 +1,22 @@
 const express = require('express');
 const config = require('config');
 const mongoose = require('mongoose');
+const session = require('express-session');
+const passport = require('passport');
 
 const app = express();
 
+require('./utils/passport')(passport);
+
 // Middleware
 app.use(express.json());
+app.use(session({
+  secret: config.get('secret'),
+  resave: false,
+  saveUninitialized: false,
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Database
 mongoose.connect(config.get('db'), {
@@ -15,6 +26,7 @@ mongoose.connect(config.get('db'), {
 .catch(err => console.log(err));
 
 // Routes
+app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/photos', require('./routes/api/photos'));
 app.use('/api/users', require('./routes/api/users'));
 
