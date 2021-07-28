@@ -11,6 +11,7 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
+import Login from './modals/auth/Login';
 import Search from './modals/Search';
 
 class AppNavbar extends Component {
@@ -45,9 +46,7 @@ class AppNavbar extends Component {
               </NavItem>
             </Nav>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="#">Log In</NavLink>
-              </NavItem>
+              <Login />
             </Nav>
           </Collapse>
         </Container>
