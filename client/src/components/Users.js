@@ -38,7 +38,10 @@ class Users extends Component {
                 <td><a href={user.links.html}>{user.username}</a></td>
                 <td>{user.name}</td>
                 <td>{user.photos.length}</td>
-                <td><Link to={`/users/${user.unsplashId}`} className="btn btn-primary btn-block">View saved photos</Link></td>
+                <td>
+                  <Link to={`/users/${user.unsplashId}`} className="btn btn-primary btn-block">View saved photos</Link>
+                  <Link to={`/users/${user.username}/photos`} className="btn btn-secondary btn-block">View all photos</Link>
+                </td>
               </tr>
             )) }
           </tbody>

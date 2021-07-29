@@ -23,6 +23,7 @@ class Search extends Component {
 
     this.state = {
       query: '',
+      page: 1,
 
       isOpen: false,
     };
@@ -30,6 +31,7 @@ class Search extends Component {
     this.toggle = this.toggle.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.search = this.search.bind(this);
   }
 
   toggle = () => {
@@ -47,12 +49,17 @@ class Search extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-
-    this.props.searchPhotos(JSON.stringify({ query: this.state.query, page: 1, perPage: 30 }));
+    
+    this.search();
   }
-
+  
   addToGallery = id => {
     this.props.addToGallery(id);
+  }
+  
+  search = () => {
+    this.props.searchPhotos(JSON.stringify({ query: this.state.query, page: this.state.page, perPage: 30 }));
+    this.setState({ page: this.state.page + 1 });
   }
 
   render() {
@@ -96,6 +103,9 @@ class Search extends Component {
                   { isAuthenticated ? <Button onClick={this.addToGallery.bind(this, photo.id)} className="mt-2">Add to Gallery</Button> : null }
                 </div>
               )) }
+              <div className="col-md-12">
+                <Button block onClick={this.search}>Load More</Button>
+              </div>
             </div> : null }
         </Modal>
       </Fragment>
