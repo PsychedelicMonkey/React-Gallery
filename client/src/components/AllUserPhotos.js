@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
-import { addToGallery } from '../actions/galleryActions';
+import { addToGallery, loadGallery } from '../actions/galleryActions';
 
 class AllUserPhotos extends Component {
   constructor(props) {
@@ -16,6 +16,7 @@ class AllUserPhotos extends Component {
   }
 
   componentDidMount() {
+    this.props.loadGallery();
     this.load();
   }
 
@@ -42,13 +43,17 @@ class AllUserPhotos extends Component {
 
   render() {
     const { photos } = this.state;
-    const { isAuthenticated } = this.props;
+    const { isAuthenticated, gallery } = this.props;
     return (
       <div className="gallery row">
         { photos.map(photo => (
           <div className="col-md-4" key={photo.id}>
             <img src={photo.urls.regular} alt="" />
-            { isAuthenticated ? <Button block className="mt-2" onClick={this.add.bind(this, photo.id)}>Add</Button> : null }
+            { isAuthenticated ? (
+               gallery.filter(p => p.unsplashId === photo.id).length > 0 ? 
+              <Button block className="mt-2" disabled>In Gallery</Button> : 
+              <Button block className="mt-2" onClick={this.add.bind(this, photo.id)}>Add</Button> 
+            ) : null }
           </div>
         )) }
         <Button onClick={this.load}>Load More</Button>
@@ -59,6 +64,7 @@ class AllUserPhotos extends Component {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
+  gallery: state.gallery.photos,
 });
 
-export default connect(mapStateToProps, { addToGallery })(AllUserPhotos);
+export default connect(mapStateToProps, { addToGallery, loadGallery })(AllUserPhotos);
