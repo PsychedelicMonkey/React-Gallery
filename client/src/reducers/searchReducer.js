@@ -15,7 +15,7 @@ export default function(state = initialState, action) {
     case SEARCH_SUCCESS:
       return {
         ...state,
-        photos: action.payload,
+        photos: [...state.photos, ...action.payload],
         isLoading: false,
       }
     case SEARCH_ERROR:
