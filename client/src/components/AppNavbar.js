@@ -40,7 +40,7 @@ class AppNavbar extends Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="mr-auto" navbar>
-              <Search />
+              { isAuthenticated ? <Search /> : null }
               <NavItem>
                 <NavLink tag={Link} to="/users">Users</NavLink>
               </NavItem>

@@ -5,6 +5,8 @@ const unsplash = require('../../unsplash');
 const Photo = require('../../models/Photo');
 const User = require('../../models/User');
 
+const { ensureAuthenticated } = require('../../utils/auth');
+
 // Get all photos from db
 router.get('/', async (req, res) => {
   try {
@@ -29,7 +31,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Add unsplash photo to db
-router.post('/add', async (req, res) => {
+router.post('/add', ensureAuthenticated, async (req, res) => {
   const { photoId } = req.body;
 
   try {
@@ -64,7 +66,7 @@ router.post('/add', async (req, res) => {
 });
 
 // Search for unsplash photos by query string
-router.post('/search', async (req, res) => {
+router.post('/search', ensureAuthenticated, async (req, res) => {
   const { query, page, perPage } = req.body;
 
   try {

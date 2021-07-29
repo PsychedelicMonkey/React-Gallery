@@ -57,6 +57,7 @@ class Search extends Component {
 
   render() {
     const { photos, isLoading } = this.props.search;
+    const { isAuthenticated } = this.props;
     return (
       <Fragment>
         <NavItem>
@@ -92,7 +93,7 @@ class Search extends Component {
               { photos.map(photo => (
                 <div className="col-md-4" key={photo.id}>
                   <img src={photo.urls.regular} alt="" />
-                  <Button onClick={this.addToGallery.bind(this, photo.id)} className="mt-2">Add to Gallery</Button>
+                  { isAuthenticated ? <Button onClick={this.addToGallery.bind(this, photo.id)} className="mt-2">Add to Gallery</Button> : null }
                 </div>
               )) }
             </div> : null }
@@ -104,6 +105,7 @@ class Search extends Component {
 
 const mapStateToProps = state => ({
   search : state.search,
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps, { searchPhotos, addToGallery })(Search);
